@@ -3,7 +3,8 @@ import rest from '@feathersjs/rest-client';
 import auth from '@feathersjs/authentication-client';
 
 const feathersClient = feathers();
-const restClient = rest('http://localhost:3030');
+const apiUrl = process.env.NODE_ENV === 'production'?'/api':'/';
+const restClient = rest(apiUrl);
 
 feathersClient.configure(restClient.fetch(fetch));
 
